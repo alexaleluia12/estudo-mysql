@@ -1,0 +1,19 @@
+DROP TABLE IF EXISTS Produtos;
+CREATE TABLE Produtos
+(
+	Referencia	VARCHAR(3) PRIMARY KEY,
+	Descricao	VARCHAR(50) UNIQUE,
+	Estoque	INT NOT NULL DEFAULT 0
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;;
+
+INSERT INTO Produtos VALUES ('001', 'Feijão', 10);
+INSERT INTO Produtos VALUES ('002', 'Arroz', 5);
+INSERT INTO Produtos VALUES ('003', 'Farinha', 15);
+
+DROP TABLE IF EXISTS ItensVenda;
+CREATE TABLE ItensVenda
+(	
+	Venda		INT,
+	Produto	VARCHAR(3),
+	Quantidade	INT
+) vENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;;

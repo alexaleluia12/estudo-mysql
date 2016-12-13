@@ -1,0 +1,19 @@
+First step would be to set a unique key on the table:
+
+ALTER TABLE thetable ADD UNIQUE INDEX(pageid, name);
+Then you have to decide what you want to do when there's a duplicate. Should you:
+
+ignore it?
+INSERT IGNORE INTO thetable (pageid, name) VALUES (1, "foo"), (1, "foo");
+Overwrite the previously entered record?
+INSERT INTO thetable (pageid, name, somefield)
+VALUES (1, "foo", "first")
+ON DUPLICATE KEY UPDATE (somefield = 'first')
+
+INSERT INTO thetable (pageid, name, somefield)
+VALUES (1, "foo", "second")
+ON DUPLICATE KEY UPDATE (somefield = 'second')
+Update some counter?
+INSERT INTO thetable (pageid, name)
+VALUES (1, "foo"), (1, "foo")
+ON DUPLICATE KEY UPDATE (pagecount = pagecount + 1)
